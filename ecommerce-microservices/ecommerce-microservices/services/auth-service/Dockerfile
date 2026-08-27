@@ -1,7 +1,14 @@
 FROM node:20-alpine
 WORKDIR /app
-COPY package*.json ./
+
+# Change this line to point to the service's subdirectory:
+COPY services/auth-service/package*.json ./
+
 RUN npm install --omit=dev
-COPY . .
+
+# Copy the rest of the service source code and shared folder
+COPY services/auth-service ./
+COPY shared ./shared
+
 EXPOSE 4001
-CMD ["node", "src/server.js"]
+CMD ["npm", "start"]

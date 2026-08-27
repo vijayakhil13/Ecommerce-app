@@ -8,18 +8,18 @@ const mongoose = require('mongoose');
 const Product = require('./models/Product');
 
 const SAMPLE_PRODUCTS = [
-  { title: 'Wireless Noise-Cancelling Headphones', price: 129.99, category: 'Electronics', brand: 'SoundCore', stock: 50, description: 'Over-ear headphones with active noise cancellation and 30h battery life.' },
-  { title: '4K Ultra HD Smart TV 55"', price: 449.0, category: 'Electronics', brand: 'Visionix', stock: 20, description: 'Crisp 4K HDR display with built-in streaming apps.' },
-  { title: 'Mechanical Keyboard RGB', price: 79.5, category: 'Electronics', brand: 'KeyForge', stock: 80, description: 'Hot-swappable mechanical switches with per-key RGB lighting.' },
-  { title: "Men's Running Shoes", price: 59.99, category: 'Fashion', brand: 'Stridewell', stock: 100, description: 'Lightweight breathable running shoes with cushioned sole.' },
-  { title: "Women's Denim Jacket", price: 45.0, category: 'Fashion', brand: 'Urbane', stock: 60, description: 'Classic fit denim jacket, machine washable.' },
-  { title: 'Stainless Steel Cookware Set (10-piece)', price: 149.0, category: 'Home & Kitchen', brand: 'ChefLine', stock: 30, description: 'Durable stainless steel pots and pans with heat-resistant handles.' },
-  { title: 'Robot Vacuum Cleaner', price: 199.99, category: 'Home & Kitchen', brand: 'CleanBot', stock: 25, description: 'Smart mapping robot vacuum with app control.' },
-  { title: 'Yoga Mat with Carry Strap', price: 24.99, category: 'Sports & Outdoors', brand: 'FlexFit', stock: 150, description: 'Non-slip eco-friendly yoga mat, 6mm thick.' },
-  { title: 'Adjustable Dumbbell Set', price: 189.0, category: 'Sports & Outdoors', brand: 'IronCore', stock: 40, description: 'Space-saving adjustable dumbbells, 5-50 lbs per side.' },
-  { title: 'Bestselling Mystery Novel (Paperback)', price: 14.99, category: 'Books', brand: 'PenPress', stock: 200, description: 'A gripping page-turner from a bestselling author.' },
-  { title: "Kids' Building Blocks Set (200 pcs)", price: 34.99, category: 'Toys', brand: 'BuildJoy', stock: 90, description: 'Creative building blocks compatible with major brands.' },
-  { title: 'Espresso Machine', price: 249.0, category: 'Home & Kitchen', brand: 'BrewCraft', stock: 15, description: '15-bar pump espresso machine with milk frother.' },
+  { title: 'Wireless Noise-Cancelling Headphones', price: 129.99, category: 'Electronics', brand: 'SoundCore', stock: 50, description: 'Over-ear headphones with active noise cancellation and 30h battery life.', images: ['https://images.unsplash.com/photo-1505740420928-5e560c06d30e'] },
+  { title: '4K Ultra HD Smart TV 55"', price: 449.0, category: 'Electronics', brand: 'Visionix', stock: 20, description: 'Crisp 4K HDR display with built-in streaming apps.', images: ['https://images.unsplash.com/photo-1593359677879-a4bb92f829d1'] },
+  { title: 'Mechanical Keyboard RGB', price: 79.5, category: 'Electronics', brand: 'KeyForge', stock: 80, description: 'Hot-swappable mechanical switches with per-key RGB lighting.', images: ['https://images.unsplash.com/photo-1587829741301-dc798b83add3'] },
+  { title: "Men's Running Shoes", price: 59.99, category: 'Fashion', brand: 'Stridewell', stock: 100, description: 'Lightweight breathable running shoes with cushioned sole.', images: ['https://images.unsplash.com/photo-1542291026-7eec264c27ff'] },
+  { title: "Women's Denim Jacket", price: 45.0, category: 'Fashion', brand: 'Urbane', stock: 60, description: 'Classic fit denim jacket, machine washable.', images: ['https://images.unsplash.com/photo-1601333144130-8cbb312386b6'] },
+  { title: 'Stainless Steel Cookware Set (10-piece)', price: 149.0, category: 'Home & Kitchen', brand: 'ChefLine', stock: 30, description: 'Durable stainless steel pots and pans with heat-resistant handles.', images: ['https://images.unsplash.com/photo-1584990347449-a0d3a6d7de79'] },
+  { title: 'Robot Vacuum Cleaner', price: 199.99, category: 'Home & Kitchen', brand: 'CleanBot', stock: 25, description: 'Smart mapping robot vacuum with app control.', images: ['https://images.unsplash.com/photo-1567690187548-f07b1d7bf5a9'] },
+  { title: 'Yoga Mat with Carry Strap', price: 24.99, category: 'Sports & Outdoors', brand: 'FlexFit', stock: 150, description: 'Non-slip eco-friendly yoga mat, 6mm thick.', images: ['https://images.unsplash.com/photo-1592432678016-e910b452f9a2'] },
+  { title: 'Adjustable Dumbbell Set', price: 189.0, category: 'Sports & Outdoors', brand: 'IronCore', stock: 40, description: 'Space-saving adjustable dumbbells, 5-50 lbs per side.', images: ['https://images.unsplash.com/photo-1638536532686-d610adfc8e5c'] },
+  { title: 'Bestselling Mystery Novel (Paperback)', price: 14.99, category: 'Books', brand: 'PenPress', stock: 200, description: 'A gripping page-turner from a bestselling author.', images: ['https://images.unsplash.com/photo-1544947950-fa07a98d237f'] },
+  { title: "Kids' Building Blocks Set (200 pcs)", price: 34.99, category: 'Toys', brand: 'BuildJoy', stock: 90, description: 'Creative building blocks compatible with major brands.', images: ['https://images.unsplash.com/photo-1587654780291-39c9404d746b'] },
+  { title: 'Espresso Machine', price: 249.0, category: 'Home & Kitchen', brand: 'BrewCraft', stock: 15, description: '15-bar pump espresso machine with milk frother.', images: ['https://images.unsplash.com/photo-1519864600265-abb23847ef2c'] },
 ];
 
 async function seed() {

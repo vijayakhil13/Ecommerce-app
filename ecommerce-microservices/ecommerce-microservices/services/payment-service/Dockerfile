@@ -1,7 +1,14 @@
 FROM node:20-alpine
 WORKDIR /app
-COPY package*.json ./
+
+# Point to payment-service's package.json from the root context
+COPY services/payment-service/package*.json ./
+
 RUN npm install --omit=dev
-COPY . .
+
+# Copy service source code and shared folder
+COPY services/payment-service ./
+COPY shared ./shared
+
 EXPOSE 4005
-CMD ["node", "src/server.js"]
+CMD ["npm", "start"]

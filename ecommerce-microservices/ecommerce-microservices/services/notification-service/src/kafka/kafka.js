@@ -1,4 +1,4 @@
-const { createConsumer } = require('../../../../shared/kafka/kafkaClient');
+const { createProducer, publishEvent, createConsumer } = require('../../shared/kafka/kafkaClient');
 const Notification = require('../models/Notification');
 
 const MESSAGES = {

@@ -58,16 +58,20 @@ app.get('/api/system/health', async (req, res) => {
   res.json({ services: results, checkedAt: new Date().toISOString() });
 });
 
-// ---------- Route mapping: gateway path -> downstream microservice ----------
-// NOTE: proxy() forwards the request as-is (headers incl. Authorization, body, method)
-app.use('/api/auth', proxy(SERVICES.auth, { proxyReqPathResolver: (req) => req.originalUrl.replace('/api/auth', '') }));
-app.use('/api/users', proxy(SERVICES.user, { proxyReqPathResolver: (req) => req.originalUrl.replace('/api/users', '') }));
-app.use('/api/products', proxy(SERVICES.product, { proxyReqPathResolver: (req) => req.originalUrl.replace('/api/products', '') }));
-app.use('/api/orders', proxy(SERVICES.order, { proxyReqPathResolver: (req) => req.originalUrl.replace('/api/orders', '') }));
-app.use('/api/payments', proxy(SERVICES.payment, { proxyReqPathResolver: (req) => req.originalUrl.replace('/api/payments', '') }));
-app.use('/api/inventory', proxy(SERVICES.inventory, { proxyReqPathResolver: (req) => req.originalUrl.replace('/api/inventory', '') }));
-app.use('/api/notifications', proxy(SERVICES.notification, { proxyReqPathResolver: (req) => req.originalUrl.replace('/api/notifications', '') }));
+function stripPrefix(prefix) {
+  return (req) => {
+    const rest = req.originalUrl.slice(prefix.length) || '/';
+    return rest.startsWith('/') ? rest : '/' + rest;
+  };
+}
 
+app.use('/api/auth', proxy(SERVICES.auth, { proxyReqPathResolver: stripPrefix('/api/auth') }));
+app.use('/api/users', proxy(SERVICES.user, { proxyReqPathResolver: stripPrefix('/api/users') }));
+app.use('/api/products', proxy(SERVICES.product, { proxyReqPathResolver: stripPrefix('/api/products') }));
+app.use('/api/orders', proxy(SERVICES.order, { proxyReqPathResolver: stripPrefix('/api/orders') }));
+app.use('/api/payments', proxy(SERVICES.payment, { proxyReqPathResolver: stripPrefix('/api/payments') }));
+app.use('/api/inventory', proxy(SERVICES.inventory, { proxyReqPathResolver: stripPrefix('/api/inventory') }));
+app.use('/api/notifications', proxy(SERVICES.notification, { proxyReqPathResolver: stripPrefix('/api/notifications') }));
 app.use((req, res) => res.status(404).json({ message: 'Route not found on gateway' }));
 
 app.listen(PORT, () => console.log(`[api-gateway] listening on port ${PORT}`));

@@ -1,7 +1,13 @@
 FROM node:20-alpine
 WORKDIR /app
-COPY package*.json ./
+
+# Update this path for order-service
+COPY services/order-service/package*.json ./
+
 RUN npm install --omit=dev
-COPY . .
+
+# Copy service source code and shared folder
+COPY services/order-service ./
+COPY shared ./shared
 EXPOSE 4004
-CMD ["node", "src/server.js"]
+CMD ["npm", "start"]

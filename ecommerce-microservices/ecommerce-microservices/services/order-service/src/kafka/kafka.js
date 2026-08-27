@@ -1,4 +1,4 @@
-const { createProducer, publishEvent, createConsumer } = require('../../../../shared/kafka/kafkaClient');
+const { createProducer, publishEvent, createConsumer } = require('../../shared/kafka/kafkaClient');
 const Order = require('../models/Order');
 
 let producer;

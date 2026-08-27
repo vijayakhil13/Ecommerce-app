@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { createProducer, publishEvent, createConsumer } = require('../../../../shared/kafka/kafkaClient');
+const { createProducer, publishEvent, createConsumer } = require('../../shared/kafka/kafkaClient');
 const Payment = require('../models/Payment');
 
 let producer;

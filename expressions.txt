@@ -1,0 +1,2 @@
+# Replace exact secret with a safe string
+my_secret_api_key_12345==>REMOVED_SECRET
